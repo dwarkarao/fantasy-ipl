@@ -1,0 +1,40 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Users collection: readable by anyone logged in ─────────────────────
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow write: if false; // Only written by setup script via Admin SDK
+    }
+
+    // ── Matches: readable by all, writable only by admin ──────────────────
+    match /matches/{matchId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth.token.email == 'admin@fantasyipl.com';
+    }
+
+    // ── Picks: each user can read/write only their own picks ──────────────
+    match /picks/{userId}/matches/{matchId} {
+      allow read:  if request.auth != null && request.auth.uid == userId;
+      allow write: if request.auth != null
+                   && request.auth.uid == userId
+                   // Lock picks once match has started (handled client-side too)
+                   && request.resource.data.matchId == matchId;
+    }
+
+    // ── Stats: readable by all, writable only by admin ────────────────────
+    match /stats/{matchId}/players/{playerName} {
+      allow read:  if request.auth != null;
+      allow write: if request.auth.token.email == 'admin@fantasyipl.com';
+    }
+
+    // ── Admin reads all picks for leaderboard ─────────────────────────────
+    match /picks/{userId}/{document=**} {
+      allow read: if request.auth != null
+                  && (request.auth.uid == userId
+                      || request.auth.token.email == 'admin@fantasyipl.com');
+    }
+  }
+}

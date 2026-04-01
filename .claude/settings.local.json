@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(brew list:*)",
+      "Bash(export PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\")",
+      "Bash(echo $PATH)",
+      "Read(//opt/homebrew/bin/**)",
+      "Bash(export PATH=\"$HOME/Library/Application Support/com.raycast.macos/NodeJS/runtime/22.14.0/bin:$PATH\")",
+      "Bash(/opt/homebrew/bin/brew install:*)",
+      "Bash(/opt/homebrew/bin/npm install:*)",
+      "Bash(/opt/homebrew/bin/node --version)",
+      "Bash(/opt/homebrew/bin/node /opt/homebrew/bin/npm install)",
+      "Bash(export PATH=\"/opt/homebrew/bin:$PATH\")",
+      "Bash(npm install:*)",
+      "Bash(node scripts/setup-firebase.mjs)",
+      "mcp__Claude_Preview__preview_start",
+      "WebSearch",
+      "WebFetch(domain:cricketdata.org)",
+      "WebFetch(domain:cricapi.com)",
+      "WebFetch(domain:documenter.getpostman.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:nekkantimadhusri.medium.com)",
+      "Bash(find /Users/dwarka/Downloads/fantasy-ipl-v2/src -type f \\\\\\(-name *.js -o -name *.jsx \\\\\\))",
+      "Bash(find /Users/dwarka/Downloads/fantasy-ipl-v2/api -type f \\\\\\(-name *.js -o -name *.jsx \\\\\\))",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}
